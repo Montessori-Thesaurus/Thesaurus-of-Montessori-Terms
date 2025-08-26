@@ -1,0 +1,24 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://vocabulary.montessoriglossary.org/concept/absorbent-mind> a skos:Concept ;
+    skos:definition "A child's capacity to learn effortlessly from the environment in early years."@en ;
+    skos:inScheme <https://vocabulary.montessoriglossary.org/scheme> ;
+    skos:prefLabel "Absorbent Mind"@en .
+
+<https://vocabulary.montessoriglossary.org/concept/control-of-error> a skos:Concept ;
+    skos:altLabel "Self-Correction"@en ;
+    skos:definition "Mechanisms in materials enabling children to identify and correct mistakes independently."@en ;
+    skos:inScheme <https://vocabulary.montessoriglossary.org/scheme> ;
+    skos:prefLabel "Control of Error"@en .
+
+<https://vocabulary.montessoriglossary.org/concept/practical-life> a skos:Concept ;
+    skos:altLabel "Daily Living"@en,
+        "Practical Activities"@en ;
+    skos:definition "Activities designed to teach independence and life skills."@en ;
+    skos:inScheme <https://vocabulary.montessoriglossary.org/scheme> ;
+    skos:prefLabel "Practical Life"@en .
+
+<https://vocabulary.montessoriglossary.org/scheme> a skos:ConceptScheme ;
+    dcterms:title "Montessori Glossary Vocabulary"@en .
+

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2>{{ concept.bestPrefLabel or concept.iri }}</h2>
+    {% if concept.bestDefinition %}
+      <p>{{ concept.bestDefinition }}</p>
+    {% endif %}
+    <div class="muted" style="font-size:.9rem">IRI: {{ concept.iri }}</div>
+  </div>
+
+  {% if concept.prefLabel %}
+    <div class="card">
+      <strong>Preferred labels</strong>
+      <ul>
+        {% for lang, labels in concept.prefLabel.items() %}
+          {% for l in labels %}
+            <li>{{ l }} <span class="muted">[{{ lang }}]</span></li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if concept.altLabel %}
+    <div class="card">
+      <strong>Alternate labels</strong>
+      <ul>
+        {% for lang, labels in concept.altLabel.items() %}
+          {% for l in labels %}
+            <li>{{ l }} <span class="muted">[{{ lang }}]</span></li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <div class="card">
+    <strong>Relations</strong>
+    <div>
+      <div><span class="muted">Broader:</span>
+        {% if concept.broader %}
+          {% for iri in concept.broader %}
+            <a href="/c/{{ iri | urlencode }}">{{ iri }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        {% else %}
+          <span class="muted">none</span>
+        {% endif %}
+      </div>
+      <div><span class="muted">Narrower:</span>
+        {% if concept.narrower %}
+          {% for iri in concept.narrower %}
+            <a href="/c/{{ iri | urlencode }}">{{ iri }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        {% else %}
+          <span class="muted">none</span>
+        {% endif %}
+      </div>
+      <div><span class="muted">Related:</span>
+        {% if concept.related %}
+          {% for iri in concept.related %}
+            <a href="/c/{{ iri | urlencode }}">{{ iri }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        {% else %}
+          <span class="muted">none</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem">
+    <a href="/">Back to search</a>
+  </div>
+{% endblock %}
