@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="search">
+    <form method="get" action="/">
+      <input type="text" name="q" value="{{ query or '' }}" placeholder="Search glossary terms (prefLabel, altLabel)" />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  {% if results %}
+    {% for item in results %}
+      <div class="card">
+        <div><a href="/c/{{ item.iri | urlencode }}">{{ item.pref_label or item.iri }}</a></div>
+        {% if item.definition %}
+          <div class="muted">{{ item.definition }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="muted">No concepts found. Try a different search.</div>
+  {% endif %}
+
+  <div style="margin-top:1rem">
+    <a href="/download.ttl">Download TTL</a> ·
+    <a href="/download.jsonld">JSON-LD</a> ·
+    <a href="/download.xml">RDF/XML</a> ·
+    <a href="/api/docs">API Docs</a>
+  </div>
+{% endblock %}
